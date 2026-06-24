@@ -2,7 +2,7 @@ import os
 
 import torch
 
-from data import load_mnist, inject_bias, PATCH_POS
+from data import load_mnist, inject_bias, PATCH_POS, visualize
 from model import SpuriousCNN
 from train import train, accuracy, patch_following_rate
 from utils import set_seed
@@ -21,7 +21,7 @@ def main():
     os.makedirs(CKPT_DIR, exist_ok=True)
 
     Xtr, ytr, Xte, yte = load_mnist()
-
+    visualize(Xte, yte, n = 5)
     Xtr_b, _, _ = inject_bias(Xtr, ytr, mode="aligned", bias_p=TRAIN_BIAS_P, seed=SEED)
 
     Xte_al, m_al, pc_al = inject_bias(Xte, yte, mode="aligned", bias_p=1.0, seed=1)
