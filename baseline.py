@@ -32,14 +32,6 @@ def main():
     model = SpuriousCNN()
     train(model, Xtr_b, ytr)
 
-    print("\n=== BIAS VERIFICATION ===")
-    print(f"  aligned test acc : {accuracy(model, Xte_al, yte):.3f}   (cue agrees with label)")
-    print(f"  clean   test acc : {accuracy(model, Xte_cl, yte):.3f}   (no cue -> digit-only)")
-    print(f"  swapped test acc : {accuracy(model, Xte_sw, yte):.3f}   (cue points to WRONG class)")
-    print(f"  swapped patch-follow rate: {patch_following_rate(model, Xte_sw, pc_sw):.3f}"
-          "   (->1.0 = fully cue-driven)")
-    print("  Interpretation: high aligned + low clean/swapped + high follow-rate = biased model.")
-
     torch.save(model.state_dict(), os.path.join(CKPT_DIR, "decoy_cnn.pt"))
     export = {
         "labels": yte[:EVAL_N],
