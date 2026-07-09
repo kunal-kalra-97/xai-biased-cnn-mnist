@@ -6,4 +6,6 @@ We prove it's cheating by testing three versions of each image - patch-correct(p
 
 Then we run attribution methods (Grad-CAM, etc.) to see which ones actually reveal the model relying on that spurious patch.
 
-Run `python bias_verification_full.py` to confirm the bias, then `python grad_cam.py` to generate the heatmaps.
+`python bias_verification_full.py` to confirm the bias
+`python grad_cam.py` to generate the heatmaps
+`python lime.py` to run perturbations 
